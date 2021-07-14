@@ -16,7 +16,6 @@
     <!--    the connection status in order to determine whether data can be downloaded.-->
     <!--    6•	android.permission.INTERNET - Used by the API to download map tiles-->
     <!--    from Google Maps servers.-->
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -33,10 +32,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DemoMap">
+        android:theme="@style/Theme.DemoMap"
+        tools:ignore="AllowBackup">
 
         <!--       TODO 5.Add your API key generated earlier into the AndroidManifest.xml as shown below.-->
         <!--        It will be used to authenticate the access to the Google Maps services.-->
+
+        <!--TODO: meta-data is placed inside of the application-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCNOQxgZ341kOqIOw3qG6sXRtWQBOWoye8" />

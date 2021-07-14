@@ -1,13 +1,16 @@
 package com.myapplicationdev.android.demomap;
+
 import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.PermissionChecker;
 import androidx.fragment.app.FragmentManager;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -36,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         // TODO: A Map component in an app. This fragment is the simplest way to place a map in an application.
         SupportMapFragment mapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
 
-        // An assertion allows testing the correctness of any assumptions that have been made in the program.
+        /*TODO: Assertions should be used to check for something that should never happen,
+           whereas exceptions (try-catch statement) should be used to check for something that could happen.*/
         assert mapFragment != null;
-
 
        /* TODO: mapFragment.getMapAsync() returns a reference to a Google Map object.
             When the object is entirely loaded, it will be ready.
@@ -75,42 +78,33 @@ public class MainActivity extends AppCompatActivity {
             ui.setCompassEnabled(true);
             ui.setZoomControlsEnabled(true);
 
-
-            // Determine whether you have been granted a particular permission.
+            // an object that determines whether you have been granted access to a fine location.
             int permissionCheck = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION);
 
             /* TODO: If permission is granted, the ability to set the map location will be enabled.*/
             if (permissionCheck == PermissionChecker.PERMISSION_GRANTED) {
-                map.setMyLocationEnabled(true);
+                map.setMyLocationEnabled(true); // Enables the my-location layer.
 
                 //If this permission is not granted, the class activity will request that permissions be granted to this application.
             } else {
                 Log.e("Gmap-Permission", "Gps access has not been granted");
                 ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 0);
             }
-
-
         });
 
-
         btn1.setOnClickListener(v -> {
-            if (map != null) {
-                // Sets the map's type to Basic map.
-                map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            }
+            assert map != null;
+            map.setMapType(GoogleMap.MAP_TYPE_NORMAL);  // Sets the map's type to Basic map.
         });
 
         btn2.setOnClickListener(v -> {
-            if (map != null) {
-                // The map's type is changed to Topographic data map.
-                map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-            }
+            assert map != null;
+            map.setMapType(GoogleMap.MAP_TYPE_TERRAIN); // The map's type is changed to Topographic data map.
         });
+
         btn3.setOnClickListener(v -> {
-            if (map != null) {
-                // The map's type is changed to Satellite imagery map.
-                map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-            }
+            assert map != null;
+            map.setMapType(GoogleMap.MAP_TYPE_SATELLITE); // The map's type is changed to Satellite imagery map.
         });
     }
 }
